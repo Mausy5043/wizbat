@@ -66,12 +66,12 @@ NODE = os.uname()[1]  # rbelec
 def main() -> None:
     """Execute main loop until killed."""
     LOGGER.info(f"Running on Python {sys.version}")
-    set_led("mains", "orange")
+    set_led("bat1", "orange")
     killer = gk.GracefulKiller()
     API_bat = bat.WizBAT_v2(debug=DEBUG)
     if not API_bat.ip:
         LOGGER.critical("No HomeWizard watermeter found.")
-        set_led("mains", "red")
+        set_led("bat1", "red")
         sys.exit(1)
 
     sql_db = m3.SqlDatabase(
@@ -92,9 +92,9 @@ def main() -> None:
             try:
                 LOGGER.debug("\n...requesting telegram")
                 asyncio.run(API_bat.get_telegram())
-                set_led("mains", "green")
+                set_led("bat1", "green")
             except Exception:  # noqa
-                set_led("mains", "red")
+                set_led("bat1", "red")
                 LOGGER.critical("Unexpected error while trying to do some work!")
                 LOGGER.error(traceback.format_exc())
                 raise
@@ -110,7 +110,7 @@ def main() -> None:
                         LOGGER.debug(f"{element}")  # is already logged by sql_db.queue()
                         sql_db.queue(element)
                 except Exception:  # noqa
-                    set_led("mains", "red")
+                    set_led("bat1", "red")
                     LOGGER.critical("Unexpected error while trying to queue the data")
                     LOGGER.error(traceback.format_exc())
                     raise  # may be changed to pass if errors can be corrected.
@@ -118,7 +118,7 @@ def main() -> None:
                     LOGGER.debug("\n...inserting data")
                     sql_db.insert(method="replace")
                 except Exception:  # noqa
-                    set_led("mains", "red")
+                    set_led("bat1", "red")
                     LOGGER.critical(
                         "Unexpected error while trying to commit the data to the database"
                     )
