@@ -1,7 +1,7 @@
-# This service is for starting the HomeWizard watermeter telemetry reader
+# This service is for starting the HomeWizard battery telemetry reader
 
 [Unit]
-Description=smart water meter (HomeWizard WTR) telemetry service
+Description=home battery (HomeWizard BAT) telemetry service
 After=multi-user.target
 
 [Service]

@@ -1,7 +1,7 @@
 # This service is for trending data from the past year(s)
 
 [Unit]
-Description=trending water data from past year (service)
+Description=trending battery data from past year (service)
 Wants=wizbat.trend.year.timer
 
 [Service]

@@ -1,7 +1,7 @@
 # This timer is for triggering the trending of past day(s) data
 
 [Unit]
-Description=hourly trending water data from past day (timer)
+Description=hourly trending battery data from past day (timer)
 
 [Timer]
 OnCalendar=*-*-* *:01,11,21,31,41,51

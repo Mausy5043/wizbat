@@ -1,7 +1,7 @@
 # This service is for trending data from the past days
 
 [Unit]
-Description=trending water data from past days (service)
+Description=trending battery data from past days (service)
 Wants=wizbat.trend.day.timer
 
 [Service]
