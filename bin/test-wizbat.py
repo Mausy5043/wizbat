@@ -8,7 +8,6 @@
 import asyncio
 
 from homewizard_energy import HomeWizardEnergyV1
-
 from libzeroconf import discover as zcd
 
 # get a HomeWizard IP

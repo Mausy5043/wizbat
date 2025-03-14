@@ -14,11 +14,10 @@ import logging
 import sys
 import time
 
+import constants
 import numpy as np
 import pandas as pd
 from homewizard_energy import HomeWizardEnergyV1
-
-import constants
 from libzeroconf import discover as zcd
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
