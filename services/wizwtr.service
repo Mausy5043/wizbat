@@ -1,0 +1,19 @@
+# This service is for starting the HomeWizard watermeter telemetry reader
+
+[Unit]
+Description=smart water meter (HomeWizard WTR) telemetry service
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+EnvironmentFile=/home/pi/.pyenvpaths
+WorkingDirectory=/home/pi/wizwtr
+ExecStartPre=/home/pi/wizwtr/wizwtr --boot
+ExecStart=/home/pi/wizwtr/src/wizwtr.py --start
+# stand back for 1 minute to allow for dongle to recover
+RestartSec=60s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
