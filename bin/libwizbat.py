@@ -4,9 +4,9 @@
 # Copyright (C) 2025  Maurice (mausy5043) Hendrix
 # AGPL-3.0-or-later  - see LICENSE
 
-# https://api-documentation.homewizard.com/docs/category/api-v1
+# https://api-documentation.homewizard.com/docs/category/api-v2
 
-"""Common functions for use with the HomeWizard watermeter using the API/v1"""
+"""Common functions for use with the HomeWizard battery using the API/v2"""
 
 # import asyncio
 import datetime as dt
@@ -23,11 +23,8 @@ from mausy5043_common import funzeroconf as zcd
 LOGGER: logging.Logger = logging.getLogger(__name__)
 
 
-# https://api-documentation.homewizard.com/docs/category/api-v1
-
-
 class WizBAT_v2:  # pylint: disable=too-many-instance-attributes
-    """Class to interact with the HomeWizard watermeter."""
+    """Class to interact with the HomeWizard battery."""
 
     def __init__(self, debug: bool = False) -> None:  # pylint: disable=too-many-instance-attributes
         """Initialize the class."""
@@ -45,7 +42,7 @@ class WizBAT_v2:  # pylint: disable=too-many-instance-attributes
 
         self.dt_format = constants.DT_FORMAT  # "%Y-%m-%d %H:%M:%S"
         # starting values
-        self.water: float = 0.0
+        #self.water: float = 0.0
         self.list_data: list = []
 
         self.debug: bool = debug

@@ -70,19 +70,19 @@ def main() -> None:
     killer = gk.GracefulKiller()
     API_bat = bat.WizBAT_v2(debug=DEBUG)
     if not API_bat.ip:
-        LOGGER.critical("No HomeWizard watermeter found.")
+        LOGGER.critical("No HomeWizard battery found.")
         set_led("bat1", "red")
         sys.exit(1)
 
     sql_db = m3.SqlDatabase(
-        database=constants.WIZ_WTR["database"],
-        table=constants.WIZ_WTR["sql_table"],
-        insert=constants.WIZ_WTR["sql_command"],
+        database=constants.WIZ_BAT["database"],
+        table=constants.WIZ_BAT["sql_table"],
+        insert=constants.WIZ_BAT["sql_command"],
         debug=DEBUG,
     )
 
-    report_interval = int(constants.WIZ_WTR["report_interval"])
-    sample_interval = report_interval / int(constants.WIZ_WTR["samplespercycle"])
+    report_interval = int(constants.WIZ_BAT["report_interval"])
+    sample_interval = report_interval / int(constants.WIZ_BAT["samplespercycle"])
 
     next_time = time.time()
     rprt_time = time.time() + (report_interval - (time.time() % report_interval))

@@ -41,10 +41,10 @@ declare -a wizbat_apt_packages=("build-essential" "python3" "python3-dev" "pytho
     "libatlas-base-dev" "libxcb1" "libopenjp2-7" "libtiff5"
     "sqlite3")
 # placeholders for trendgraphs to make website work regardless of the state of the graphs.
-declare -a wizbat_graphs=('wtr_pastdays_bat.png'
-    'wtr_pasthours_bat.png'
-    'wtr_pastmonths_bat.png'
-    'wtr_pastyears_bat.png')
+declare -a wizbat_graphs=('bat_pastdays_bat1.png'
+    'bat_pasthours_bat1.png'
+    'bat_pastmonths_bat1.png'
+    'bat_pastyears_bat1.png')
 
 # start the application
 start_wizbat() {

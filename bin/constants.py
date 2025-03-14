@@ -48,13 +48,13 @@ FLOAT_FMT = "+.0f"
 TREND: dict = {
     "database": _DATABASE,
     "website": _WEBSITE,
-    "hour_graph": f"{_WEBSITE}/wtr_pasthours",
-    "day_graph": f"{_WEBSITE}/wtr_pastdays",
-    "month_graph": f"{_WEBSITE}/wtr_pastmonths",
-    "year_graph": f"{_WEBSITE}/wtr_pastyears",
+    "hour_graph": f"{_WEBSITE}/bat_pasthours",
+    "day_graph": f"{_WEBSITE}/bat_pastdays",
+    "month_graph": f"{_WEBSITE}/bat_pastmonths",
+    "year_graph": f"{_WEBSITE}/bat_pastyears",
 }
 
-WIZ_WTR: dict = {
+WIZ_BAT: dict = {
     "database": _DATABASE,
     "sql_table": "mains",
     "sql_command": "INSERT INTO mains ("
@@ -70,13 +70,10 @@ WIZ_WTR: dict = {
         "sample_epoch": 0,
         "water": 0,  # L
         },
-    "offset": (891.895 - 0.035),  # m3
+    "offset": 0,
     "calibration": {
-        # 2024
-        "2024-12-25 11:00:00": 0.000,  # correction in m3
-        # 2025
-        "2025-01-05 18:31:00": -0.003,
-        "2025-03-01 08:25:00": -0.005,
+        # datetime(str): offset(float)
+        "2024-12-25 11:00:00": 0.000,
         },
     }
 # fmt: on

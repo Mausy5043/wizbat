@@ -5,7 +5,7 @@
 # AGPL-3.0-or-later  - see LICENSE
 
 """Create trendbargraphs of the data for various periods.
-Using HomeWizard watermeter data
+Using HomeWizard battery data
 """
 
 import argparse

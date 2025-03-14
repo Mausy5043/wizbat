@@ -1,18 +1,39 @@
 #!/usr/bin/env sqlite3
 -- SQLite3 script
--- create a table `mains` for HomeWizard smart water meter readings
+-- create a table `storage` for HomeWizard battery state data
+-- ref: https://api-documentation.homewizard.com/docs/v2/measurement#plug-in-battery-hwe-bat
 
-DROP TABLE IF EXISTS mains;
+DROP TABLE IF EXISTS storage;
 
 
-CREATE TABLE mains (
+CREATE TABLE storage (
   sample_time   datetime NOT NULL PRIMARY KEY,
   sample_epoch  integer,
-  water         integer
+  bat_id        text,
+  soc           float,
+  cycles        float,
+  power         float,
+  voltage       float,
+  current       float,
+  frequency     float,
+  import        float,
+  export        float,
   );
 
--- SQLite3 automatically creates a UNIQUE INDEX on the PRIMARY KEY in the background.
--- So, no index needed.
+CREATE INDEX storage_sample_epoch ON storage(sample_epoch);
+CREATE INDEX storage_bat_id ON storage(bat_id);
 
-INSERT INTO mains (sample_time, sample_epoch, water)
-       VALUES ('2024-12-25 11:00:00', 1735120800, 891719);
+-- example:
+-- https/1.1 200 OK
+-- Content-Type: application/json
+
+-- {
+--    "energy_import_kwh": 123.456,
+--    "energy_export_kwh": 123.456,
+--    "power_w": 123,
+--    "voltage_l1_v": 230,
+--    "current_a": 1.5,
+--    "frequency_hz": 50,
+--    "state_of_charge_pct": 50,
+--    "cycles": 123
+-- }
