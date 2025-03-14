@@ -7,12 +7,12 @@ import pytz
 from sh import CommandNotFound, git  # type: ignore[import-untyped]
 
 _MYHOME: str = os.environ["HOME"]
-_DATABASE_FILENAME: str = "wizwtr.sqlite3"
-_DATABASE: str = f"/srv/rmt/_databases/wizwtr/{_DATABASE_FILENAME}"
+_DATABASE_FILENAME: str = "wizbat.sqlite3"
+_DATABASE: str = f"/srv/rmt/_databases/wizbat/{_DATABASE_FILENAME}"
 _HERE_list: list[str] = os.path.realpath(__file__).split("/")
 # ['', 'home', 'pi', 'kimnaty', 'bin', 'constants.py']
 _HERE: str = "/".join(_HERE_list[0:-2])
-_WEBSITE: str = "/run/wizwtr/site/img"
+_WEBSITE: str = "/run/wizbat/site/img"
 
 if not os.path.isfile(_DATABASE):
     _DATABASE = f"/srv/databases/{_DATABASE_FILENAME}"
@@ -24,9 +24,9 @@ if not os.path.isfile(_DATABASE):
     _DATABASE = f".local/{_DATABASE_FILENAME}"
     print(f"Searching for {_DATABASE}")
 if not os.path.isfile(_DATABASE):
-    # mkdir ~/.sqlite3/wizwtr
-    # ln -s ~/Dropbox/raspi/_databases/wizwtr/wizwtr.swlite3 ~/.sqlite3/wizwtr/wizwtr.sqlite3
-    _DATABASE = f"{_MYHOME}/.sqlite3/wizwtr/{_DATABASE_FILENAME}"
+    # mkdir ~/.sqlite3/wizbat
+    # ln -s ~/Dropbox/raspi/_databases/wizbat/wizbat.swlite3 ~/.sqlite3/wizbat/wizbat.sqlite3
+    _DATABASE = f"{_MYHOME}/.sqlite3/wizbat/{_DATABASE_FILENAME}"
     print(f"Searching for {_DATABASE}")
 if not os.path.isfile(_DATABASE):
     _DATABASE = f"{_DATABASE_FILENAME}"
@@ -83,7 +83,7 @@ WIZ_WTR: dict = {
 
 
 def get_app_version() -> str:
-    """Retrieve information of current version of wizwtr.
+    """Retrieve information of current version of wizbat.
 
     Returns:
         versionstring
@@ -105,4 +105,4 @@ if __name__ == "__main__":
     print(f"home              = {_MYHOME}")
     print(f"database location = {_DATABASE}")
     print("")
-    print(f"wizwtr (me)      = {get_app_version()}")
+    print(f"wizbat (me)      = {get_app_version()}")

@@ -5,7 +5,7 @@ HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
 pushd "${HERE}" >/dev/null || exit 1
 
 PARENT_COMMAND=$(ps $PPID | tail -n 1 | awk "{print \$5}")
-echo "*** wizwtr caller : ${PARENT_COMMAND}"
+echo "*** wizbat caller : ${PARENT_COMMAND}"
 echo "*** calling from  : ${HERE}  / = $(pwd)"
 echo "*** using Python  : $(/home/pi/.pyenv/bin/pyenv which python)"
 
@@ -14,41 +14,41 @@ source ./src/include.sh
 
 # check commandline parameters
 for i in "$@"; do
-    echo "*** wizwtr option: ${i}"
+    echo "*** wizbat option: ${i}"
     case $i in
     -i | --install)
-        install_wizwtr "${HERE}"
+        install_wizbat "${HERE}"
         ;;
     -u | --uninstall)
-        unstall_wizwtr
+        unstall_wizbat
         ;;
     -s | --stop)
-        stop_wizwtr
+        stop_wizbat
         ;;
     -g | --go)
-        start_wizwtr "${HERE}" "-nograph"
+        start_wizbat "${HERE}" "-nograph"
         ;;
     -b | --boot)
-        boot_wizwtr
+        boot_wizbat
         ;;
     -r | --restart)
-        restart_wizwtr "${HERE}" 0
+        restart_wizbat "${HERE}" 0
         ;;
     --systemd )
-        restart_wizwtr "${HERE}" 1
+        restart_wizbat "${HERE}" 1
         ;;
     --graph)
-        graph_wizwtr "${HERE}"
+        graph_wizbat "${HERE}"
         ;;
     --update)
-        update_wizwtr
+        update_wizbat
         ;;
     *)
         # unknown option
         echo "** Unknown option **"
         echo
         echo "Syntax:"
-        echo "wizwtr [-i|--install] [-g|--go] [-r|--restart|--graph]  [-s|--stop] [-u|--uninstall]"
+        echo "wizbat [-i|--install] [-g|--go] [-r|--restart|--graph]  [-s|--stop] [-u|--uninstall]"
         echo
         exit 1
         ;;

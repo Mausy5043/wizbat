@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# wizwtr
+# wizbat
 # Copyright (C) 2025  Maurice (mausy5043) Hendrix
 # AGPL-3.0-or-later  - see LICENSE
 
@@ -18,7 +18,7 @@ import constants
 import numpy as np
 import pandas as pd
 from homewizard_energy import HomeWizardEnergyV1
-from libzeroconf import discover as zcd
+from mausy5043_common import funzeroconf as zcd
 
 LOGGER: logging.Logger = logging.getLogger(__name__)
 
@@ -26,7 +26,7 @@ LOGGER: logging.Logger = logging.getLogger(__name__)
 # https://api-documentation.homewizard.com/docs/category/api-v1
 
 
-class WizWTR_v1:  # pylint: disable=too-many-instance-attributes
+class WizBAT_v2:  # pylint: disable=too-many-instance-attributes
     """Class to interact with the HomeWizard watermeter."""
 
     def __init__(self, debug: bool = False) -> None:  # pylint: disable=too-many-instance-attributes
@@ -35,11 +35,11 @@ class WizWTR_v1:  # pylint: disable=too-many-instance-attributes
         self.ip = ""
         deltat = 10.0
         while not self.ip and deltat < 300:
-            _howip = zcd.get_ip(service="_hwenergy", filtr="HWE-WTR")
+            _howip = zcd.get_ip(service="_hwenergy", filtr="HWE-BAT")
             if _howip:
                 self.ip = _howip[0]
             else:
-                LOGGER.error(f"No HomeWizard WTR found. Retrying in {deltat} seconds.")
+                LOGGER.error(f"No HomeWizard Battery found. Retrying in {deltat} seconds.")
                 time.sleep(deltat)
                 deltat = int(deltat * 14.142) / 10
 

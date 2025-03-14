@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# wizwtr
+# wizbat
 # Copyright (C) 2025  Maurice (mausy5043) Hendrix
 # AGPL-3.0-or-later  - see LICENSE
 
@@ -8,7 +8,7 @@
 import asyncio
 
 from homewizard_energy import HomeWizardEnergyV1
-from libzeroconf import discover as zcd
+from mausy5043_common import funzeroconf as zcd
 
 # get a HomeWizard IP
 _howip = zcd.get_ip(service="_hwenergy", filtr="HWE-WTR")

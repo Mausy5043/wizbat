@@ -2,14 +2,14 @@
 
 [Unit]
 Description=trending water data from past year (service)
-Wants=wizwtr.trend.year.timer
+Wants=wizbat.trend.year.timer
 
 [Service]
 Type=oneshot
 User=pi
 EnvironmentFile=/home/pi/.pyenvpaths
-WorkingDirectory=/home/pi/wizwtr
-ExecStart=/home/pi/wizwtr/src/pastyear.sh -
+WorkingDirectory=/home/pi/wizbat
+ExecStart=/home/pi/wizbat/src/pastyear.sh -
 
 # [Install]
 # WantedBy=multi-user.target

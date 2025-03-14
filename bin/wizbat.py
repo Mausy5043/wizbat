@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-# wizwtr
+# wizbat
 # Copyright (C) 2025  Maurice (mausy5043) Hendrix
 # AGPL-3.0-or-later  - see LICENSE
 
-"""Daemon to periodically interogate the HomeWizard watermeter to fetch water usage data.
+"""Daemon to periodically interogate the HomeWizard battery to fetch status info.
 
 Store the data in a SQLite3 database.
 """
@@ -22,7 +22,7 @@ import traceback
 
 import constants
 import GracefulKiller as gk  # type: ignore[import-untyped]
-import libwizwtr as wtr
+import libwizbat as bat
 import mausy5043_common.libsqlite3 as m3
 
 logging.basicConfig(
@@ -54,8 +54,8 @@ OPTION = parser.parse_args()
 # constants
 DEBUG = False
 HERE = os.path.realpath(__file__).split("/")
-# example HERE = ['', 'home', 'pi', 'lektrix', 'bin', 'wizwtr.py']
-MYID = HERE[-1]  # wizwtr.py
+# example HERE = ['', 'home', 'pi', 'lektrix', 'bin', 'wizbat.py']
+MYID = HERE[-1]  # wizbat.py
 MYAPP = HERE[-3]  # lektrix
 MYROOT = "/".join(HERE[0:-3])  # /home/pi
 APPROOT = "/".join(HERE[0:-2])  # /home/pi/lektrix
@@ -68,8 +68,8 @@ def main() -> None:
     LOGGER.info(f"Running on Python {sys.version}")
     set_led("mains", "orange")
     killer = gk.GracefulKiller()
-    API_wtr = wtr.WizWTR_v1(debug=DEBUG)
-    if not API_wtr.ip:
+    API_bat = bat.WizBAT_v2(debug=DEBUG)
+    if not API_bat.ip:
         LOGGER.critical("No HomeWizard watermeter found.")
         set_led("mains", "red")
         sys.exit(1)
@@ -91,7 +91,7 @@ def main() -> None:
             start_time = time.time()
             try:
                 LOGGER.debug("\n...requesting telegram")
-                asyncio.run(API_wtr.get_telegram())
+                asyncio.run(API_bat.get_telegram())
                 set_led("mains", "green")
             except Exception:  # noqa
                 set_led("mains", "red")
@@ -101,9 +101,9 @@ def main() -> None:
             # check if we already need to report the result data
             if time.time() > rprt_time:
                 LOGGER.debug("\n...reporting")
-                LOGGER.debug(f"Result   : {API_wtr.list_data}")
+                LOGGER.debug(f"Result   : {API_bat.list_data}")
                 # resample to 15m entries
-                data, API_wtr.list_data = API_wtr.compact_data(API_wtr.list_data)
+                data, API_bat.list_data = API_bat.compact_data(API_bat.list_data)
                 try:
                     LOGGER.debug("\n...queueing")
                     for element in data:
