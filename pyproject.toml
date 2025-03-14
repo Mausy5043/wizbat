@@ -5,7 +5,7 @@
 [project]
 name = "wizbat"
 version = "0.0.0"   # rolling release has no version
-description = "monitoring homewizard watermeter"
+description = "monitoring homewizard battery"
 dependencies = [
     "gracefulkiller~=0.4",
     "matplotlib~=3.10",
