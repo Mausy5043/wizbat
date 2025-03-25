@@ -10,7 +10,7 @@ User=pi
 EnvironmentFile=/home/pi/.pyenvpaths
 WorkingDirectory=/home/pi/wizbat
 ExecStartPre=/home/pi/wizbat/wizbat --boot
-ExecStart=/home/pi/wizbat/src/wizbat.py --start
+ExecStart=/home/pi/wizbat/bin/wizbat.py --start
 # stand back for 1 minute to allow for dongle to recover
 RestartSec=60s
 Restart=on-failure

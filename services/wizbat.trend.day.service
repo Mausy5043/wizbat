@@ -9,7 +9,7 @@ Type=oneshot
 User=pi
 EnvironmentFile=/home/pi/.pyenvpaths
 WorkingDirectory=/home/pi/wizbat
-ExecStart=/home/pi/wizbat/src/pastday.sh -
+ExecStart=/home/pi/wizbat/bin/pastday.sh -
 
 # [Install]
 # WantedBy=multi-user.target
