@@ -42,7 +42,7 @@ class WizBAT_v2:  # pylint: disable=too-many-instance-attributes
 
         self.dt_format = constants.DT_FORMAT  # "%Y-%m-%d %H:%M:%S"
         # starting values
-        #self.water: float = 0.0
+        # self.water: float = 0.0
         self.list_data: list = []
 
         self.debug: bool = debug
