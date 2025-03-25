@@ -126,8 +126,8 @@ class WizBAT_v2:  # pylint: disable=too-many-instance-attributes
 
     @staticmethod
     def _calc_new_total(metered_volume: float) -> float:
-        new_volume: float = metered_volume + constants.WIZ_WTR["offset"]
-        for key, value in constants.WIZ_WTR["calibration"].items():
+        new_volume: float = metered_volume + constants.WIZ_BAT["offset"]
+        for key, value in constants.WIZ_BAT["calibration"].items():
             if pd.Timestamp(key) < pd.Timestamp.now():
                 new_volume += value
         return new_volume

@@ -21,7 +21,7 @@ import matplotlib.ticker as mticker
 import pandas as pd
 
 DATABASE = constants.TREND["database"]
-TABLE_MAINS = constants.WIZ_WTR["sql_table"]
+TABLE_MAINS = constants.WIZ_BAT["sql_table"]
 
 # fmt: off
 parser = argparse.ArgumentParser(description="Create a trendgraph")
